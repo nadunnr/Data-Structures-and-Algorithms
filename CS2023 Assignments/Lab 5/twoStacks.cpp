@@ -48,6 +48,54 @@ int twoStacks(int maxSum, vector<int> a, vector<int> b) {
     return k;
 }
  
+int twoStacks(int maxSum, vector<int> a, vector<int> b) {
+    
+    int i=0, j=0, k=0;
+    int sum=0;
+    int n_a = a.size();
+    int n_b = b.size();
+
+    while(i<n_a && j<n_b){
+
+        if (a[i] <= b[j]){
+            if (sum+a[i] <=  maxSum) {
+                sum += a[i];
+                i++;
+                k++;
+            }
+            else return k;
+        }
+        else{
+            if (sum+b[j] <=  maxSum) {
+                sum += b[j];
+                j++;
+                k++;
+            }
+            else return k;
+        }
+    }
+
+    while (i<n_a){
+        if (sum+a[i] <= maxSum){
+            sum += a[i];
+            i++;
+            k++;
+        }
+        else return k;
+    }
+
+    while (j<n_b){
+        if (sum+b[j] <= maxSum){
+            sum += b[j];
+            j++;
+            k++;
+        }
+        else return k;
+    }
+
+    return k;
+}
+
 int main(){
     vector<int> a = {4, 2, 4, 6, 1};
     vector<int> b = {2, 1, 8, 5};
