@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 string ltrim(const string &);
@@ -7,63 +6,58 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'insertionSort2' function below.
+ * Complete the 'reverseArray' function below.
  *
- * The function accepts following parameters:
- *  1. INTEGER n
- *  2. INTEGER_ARRAY arr
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts INTEGER_ARRAY a as parameter.
  */
 
-void printArray(int n, vector<int> arr){
+vector<int> reverseArray(vector<int> a) {
 
-    for (int i=0; i<n; i++){
-        cout <<arr[i]<<" ";
+    //array size
+    int n = a.size();
+    vector<int> reversed_array;
+    
+    for (int i=0; i < n; i++){
+        reversed_array.push_back(a[n-1-i]);
     }
-    cout<<endl;
-}
 
-void insertionSort2(int n, vector<int> arr) {
-
-    for (int i=1; i<n; i++){
-        
-        int j = i;
-        int key = arr[i];
-        bool swapped = false;
-
-        while(j>0 and key<arr[j-1]){
-            arr[j] = arr[j-1];
-            swapped = true;
-            j--;
-        }
-
-        if (swapped) arr[j] = key;
-
-        printArray(n, arr);
-
-    }
+    return reversed_array;
 }
 
 int main()
 {
-    string n_temp;
-    getline(cin, n_temp);
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    string arr_count_temp;
+    getline(cin, arr_count_temp);
+
+    int arr_count = stoi(ltrim(rtrim(arr_count_temp)));
 
     string arr_temp_temp;
     getline(cin, arr_temp_temp);
 
     vector<string> arr_temp = split(rtrim(arr_temp_temp));
 
-    vector<int> arr(n);
+    vector<int> arr(arr_count);
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < arr_count; i++) {
         int arr_item = stoi(arr_temp[i]);
 
         arr[i] = arr_item;
     }
 
-    insertionSort2(n, arr);
+    vector<int> res = reverseArray(arr);
+
+    for (size_t i = 0; i < res.size(); i++) {
+        cout << res[i];
+
+        if (i != res.size() - 1) {
+            cout << " ";
+        }
+    }
+
+    cout << "\n";
+
 
     return 0;
 }

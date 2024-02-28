@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <cmath>
 
 using namespace std;
 
@@ -7,66 +8,42 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'closestNumbers' function below.
+ * Complete the 'rotateLeft' function below.
  *
  * The function is expected to return an INTEGER_ARRAY.
- * The function accepts INTEGER_ARRAY arr as parameter.
+ * The function accepts following parameters:
+ *  1. INTEGER d
+ *  2. INTEGER_ARRAY arr
  */
-void printArray(const vector<int>& arr){
+
+vector<int> rotateLeft(int d, vector<int> arr) {
 
     int n = arr.size();
+    vector<int> rotated;
 
-    for (int i=0; i<n; i++){
-        cout <<arr[i]<<" ";
-    }
-    cout<<endl;
-}
+    int num_rotations = d % n;
 
-vector<int> closestNumbers(vector<int> arr) {
-
-    vector<int> numbers = arr;
-
-    int n = numbers.size();
-    sort(numbers.begin(), numbers.end());
-
-    int min_distance = numbers[1] - numbers[0];
-    vector<int> closest_numbers = {numbers[0], numbers[1]};
-    int dis;
-
-    for (int i=2; i<n; i++){
-
-        dis = numbers[i] - numbers[i-1];
-
-        if(dis<min_distance) {
-            min_distance=dis;
-            closest_numbers.clear();
-            closest_numbers.push_back(numbers[i-1]);
-            closest_numbers.push_back(numbers[i]);
-        }
-
-        else if(dis==min_distance){
-            closest_numbers.push_back(numbers[i-1]);
-            closest_numbers.push_back(numbers[i]);
-        }
+    for (int i= num_rotations; i<n; i++){
+        rotated.push_back(arr[i]);
     }
 
-    return closest_numbers;
-}
+    for (int j=0; j<num_rotations; j++){
+        rotated.push_back(arr[j]);
+    }
 
-/*
-int main(){
-    vector<int> b = {1,5,6,4,9,10};
-    vector<int> a = closestNumbers(b); 
-    printArray(a);
+    return rotated;
 }
-*/
 
 int main()
 {
-    string n_temp;
-    getline(cin, n_temp);
+    string first_multiple_input_temp;
+    getline(cin, first_multiple_input_temp);
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+
+    int n = stoi(first_multiple_input[0]);
+
+    int d = stoi(first_multiple_input[1]);
 
     string arr_temp_temp;
     getline(cin, arr_temp_temp);
@@ -81,7 +58,7 @@ int main()
         arr[i] = arr_item;
     }
 
-    vector<int> result = closestNumbers(arr);
+    vector<int> result = rotateLeft(d, arr);
 
     for (size_t i = 0; i < result.size(); i++) {
         cout << result[i];
