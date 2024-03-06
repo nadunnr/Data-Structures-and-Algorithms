@@ -44,7 +44,33 @@ public:
         root = insert_node(root, value);
     }
 
-    int search(int);
+    Node* return_root(Node* node){
+        return root;
+    }
+
+    bool search_node(Node* node,int value){
+
+        if (node == nullptr){
+            return false;
+        }
+
+        else if (node->data == value){
+            return true;
+        }
+
+        else if (node->data < value){
+            return search_node(node->left, value);
+        }
+
+        else if (node->data > value){
+            return search_node(node->right, value);
+        }
+    }
+
+    bool search(int val){
+        return search_node(root, val);
+    }
+
     bool delete_node(int);
     void travers();
 };
@@ -52,4 +78,21 @@ public:
 bool BinarySearchTree::is_empty(){
     if (root == nullptr) return true;
     else return false;
+}
+
+
+int main(){
+    BinarySearchTree BST;
+
+    BST.insert(4);
+    BST.insert(1);
+    BST.insert(6);
+    BST.insert(7);
+
+    cout<<BST.is_empty()<<endl;
+    cout<<BST.search(1)<<endl;
+    cout<<BST.search(4)<<endl;
+    cout<<BST.search(6)<<endl;
+    cout<<BST.search(7)<<endl;
+    cout<<BST.search(9)<<endl;
 }
