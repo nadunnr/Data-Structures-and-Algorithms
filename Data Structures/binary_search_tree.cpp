@@ -72,7 +72,7 @@ public:
     }
 
     bool delete_node(int);
-    void travers();
+    void traversal();
 };
 
 bool BinarySearchTree::is_empty(){
