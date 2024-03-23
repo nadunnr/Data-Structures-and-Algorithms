@@ -19,7 +19,7 @@ int binary_search(vector<int>& arr, int const l, int const r, int const x){
     // use the binary search on a sorted array
     if(l<=r){
 
-        int mid = l + (r - l)/2;
+        int mid = l + r/2;
 
         if (arr[mid] == x) return mid;
         else if (arr[mid] < x){
@@ -34,6 +34,7 @@ int binary_search(vector<int>& arr, int const l, int const r, int const x){
 
 void use_binary_search(vector<int>& arr, bool sorted, int x){
 
+    //sort if not sorted
     if (!sorted){
         sort(arr.begin(), arr.end());
     }
@@ -47,6 +48,7 @@ void use_binary_search(vector<int>& arr, bool sorted, int x){
 }
 
 int main (){
+    //demonstration
     vector<int> arr = {42, 17, 25, 9, 33, 56, 72, 11, 8, 91, 5, 27, 63, 38, 14, 77, 20, 49, 3, 68,22, 41, 57, 13, 30}; 
     int n = arr.size();
     int x = 91;
