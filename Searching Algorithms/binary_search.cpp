@@ -19,7 +19,7 @@ int binary_search(vector<int>& arr, int const l, int const r, int const x){
     // use the binary search on a sorted array
     if(l<=r){
 
-        int mid = l + r/2;
+        int mid = l + (r-1)/2;
 
         if (arr[mid] == x) return mid;
         else if (arr[mid] < x){
